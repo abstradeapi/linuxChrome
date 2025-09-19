@@ -1,11 +1,17 @@
 {
-  "name": "Chrome on Gitpod",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "chrome",
-  "forwardPorts": [3000, 3001],
+  "name": "Brave Browser Gitpod",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [
+    3000,
+    3001
+  ],
   "portsAttributes": {
     "3000": { "label": "NoVNC", "onAutoForward": "openPreview" },
     "3001": { "label": "DevTools" }
   },
-  "postCreateCommand": "echo 'Chrome container is ready — open the preview tab to access it.'"
+  "postCreateCommand": "echo 'Docker ready, building environment...'",
+  "postStartCommand": "docker run --rm -d --name brave --shm-size=1gb -p 3000:3000 -p 3001:3001 lscr.io/linuxserver/brave:latest || echo 'Container already running'"
 }
