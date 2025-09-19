@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  chrome:
+    image: lscr.io/linuxserver/chrome:latest
+    container_name: chrome
+    restart: unless-stopped
+    shm_size: "1gb"
+    security_opt:
+      - seccomp=unconfined
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - CHROME_CLI=https://www.linuxserver.io/
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - chrome_config:/config
+
+volumes:
+  chrome_config:
