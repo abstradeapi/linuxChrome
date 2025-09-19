@@ -1,0 +1,11 @@
+{
+  "name": "Chrome on Gitpod",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "chrome",
+  "forwardPorts": [3000, 3001],
+  "portsAttributes": {
+    "3000": { "label": "NoVNC", "onAutoForward": "openPreview" },
+    "3001": { "label": "DevTools" }
+  },
+  "postCreateCommand": "echo 'Chrome container is ready — open the preview tab to access it.'"
+}
